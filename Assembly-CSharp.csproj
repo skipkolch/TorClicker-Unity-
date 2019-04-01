@@ -57,23 +57,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Imphenzia\GradientSky\Scripts\Common\GradientSkyCommon.cs" />
-    <Compile Include="Assets\Imphenzia\GradientSky\Scripts\GradientSkyCamera.cs" />
-    <Compile Include="Assets\Imphenzia\GradientSky\Scripts\GradientSkyObject.cs" />
     <Compile Include="Assets\Scripts\Buttons.cs" />
     <Compile Include="Assets\Scripts\Click.cs" />
     <Compile Include="Assets\Scripts\DetectTap.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Grow.cs" />
+    <Compile Include="Assets\Scripts\ScrollButtons.cs" />
     <Compile Include="Assets\Scripts\ScrollText.cs" />
+    <Compile Include="Assets\Scripts\ServicePanel.cs" />
     <Compile Include="Assets\Scripts\SpawnStars.cs" />
     <Compile Include="Assets\Scripts\StarAnimation.cs" />
     <Compile Include="Assets\Scripts\TextFade.cs" />
     <Compile Include="Assets\Scripts\Thorns.cs" />
     <Compile Include="Assets\Scripts\Timer.cs" />
-    <None Include="Assets\Imphenzia\GradientSky\ReadMe - GradientSky.txt" />
-    <None Include="Assets\Imphenzia\GradientSky\Shaders\VertexColorCamera.shader" />
-    <None Include="Assets\Imphenzia\GradientSky\Shaders\VertexColorObject.shader" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>D:/Unity/Mail.ru/Проекты/Clicker/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>

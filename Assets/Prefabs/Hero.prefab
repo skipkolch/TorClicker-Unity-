@@ -106,7 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5817245f5809fd446b332d8635ce2d58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _forseScale: 50
+  _forseScale: 60
   _maxCountClick: 5
 --- !u!114 &4094610765397879098
 MonoBehaviour:

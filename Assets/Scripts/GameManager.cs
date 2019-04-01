@@ -89,7 +89,7 @@ public class GameManager : MonoBehaviour
     private void StartPulsarTimer()
     {
        _textTimer.color = Color.Lerp(Color.white, Color.red, Mathf.PingPong (Time.time, 0.5f));       
-       _textTimer.fontSize = Convert.ToInt32(Mathf.Lerp(_timerTextSize, 2*_timerTextSize, Mathf.PingPong(Time.time, 0.5f)));
+       _textTimer.fontSize = Convert.ToInt32(Mathf.Lerp(_timerTextSize, 1.5f*_timerTextSize, Mathf.PingPong(Time.time, 0.5f)));
     }
 
     private void TimerUpdate()

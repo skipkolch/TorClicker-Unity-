@@ -9,17 +9,17 @@ public class DetectTap : MonoBehaviour
     [SerializeField] private Text _gameName;
     [SerializeField] private GameObject _tor;
     [SerializeField] private GameObject _gameManager;
+    [SerializeField] private GameObject _buttons;
 
     private bool _clicked;
     private Animation _animation;
     private Animation[] _childsTor;
     private RectTransform _rec;
     private BoxCollider _boxCollider;
+    private bool _checkTrigger;
 
     private const string _startGameAnimationText = "StartGame";
     private const string _thornsAnimationText = "Thorns";
-
-    //private GameManager gameManagerClass;
     
     private void Awake()
     {
@@ -27,7 +27,22 @@ public class DetectTap : MonoBehaviour
         _rec = _gameName.gameObject.GetComponent<RectTransform>();
         _animation = _tor.GetComponent<Animation>();
         _boxCollider = GetComponent<BoxCollider>();
+        _checkTrigger = true;
         _boxCollider.size = new Vector3(Camera.main.pixelWidth, Camera.main.pixelHeight, 1);
+    }
+
+    private void Update()
+    {
+        if (_buttons.GetComponent<ScrollButtons>().checkPosition() && _checkTrigger)
+        {
+            _checkTrigger = false;
+            ScaleTransform(true);
+        }
+    }
+
+    public void ScaleTransform(bool _up)
+    {
+        transform.localScale = _up ? new Vector3(Screen.width, Screen.height, transform.localScale.z) : new Vector3(0, 0, transform.localScale.z);
     }
 
     private void OnMouseDown()
@@ -36,6 +51,7 @@ public class DetectTap : MonoBehaviour
 
         _playText.gameObject.SetActive(false);
         _gameName.gameObject.SetActive(false);
+        _buttons.SetActive(false);
         
         var offsetMax = _rec.offsetMax;
         _rec.offsetMin += new Vector2(offsetMax.x, _gameName.fontSize * offsetMax.y);
