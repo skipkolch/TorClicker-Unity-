@@ -1,52 +1,31 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class ScrollButtons : MonoBehaviour {
 
-    public float _speed = 5f;
+    public float _duration = 5f;
 
-    private RectTransform rec;
-    private float _checkPosition;
+    private RectTransform _rec;
+    private float _moveDown;
+    private bool _onPlace;
 
-    private float moveDown;
-
-    private bool onPlace;
-    void Start ()
+    private void Start ()
     {
-        rec = GetComponent<RectTransform>();
-        _checkPosition = 0f;
-
-        moveDown = -Screen.height / 2;
-        onPlace = false;
-    }
-
-    public void setCheckPosition(float position)
-    {
-        _checkPosition = position;
+        _rec = GetComponent<RectTransform>();
+        _onPlace = false;
+        
+        _rec.DOAnchorPos(Vector2.zero, _duration, false).OnComplete(() =>
+        {
+            _onPlace = true;
+        });
+        
     }
 
     public bool checkPosition()
     {
-        return onPlace;
+        return _onPlace;
     }
 
-    // Update is called once per frame
-    void Update ()
-    {
-
-        if (Mathf.Round(rec.offsetMax.x) != 0)
-        {
-            rec.offsetMax = new Vector2(Mathf.Lerp(rec.offsetMax.x, 0, Time.time * _speed / 100), rec.offsetMax.y);
-            rec.offsetMin = new Vector2(Mathf.Lerp(rec.offsetMin.x, 0, Time.time * _speed / 100), rec.offsetMin.y);
-        }
-        else
-            onPlace = true;
-
-        if(_speed < 0)
-        {
-            rec.offsetMax = new Vector2( rec.offsetMax.x, Mathf.Lerp(rec.offsetMax.y, moveDown, Time.time * (-1) * _speed / 200));
-            rec.offsetMin = new Vector2(rec.offsetMin.x, Mathf.Lerp(rec.offsetMin.y, moveDown, Time.time * (-1) * _speed / 200));
-        }
-    }
 }

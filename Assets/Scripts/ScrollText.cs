@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class ScrollText : MonoBehaviour
@@ -16,8 +17,7 @@ public class ScrollText : MonoBehaviour
         _rec = GetComponent<RectTransform>();
 
     }
-
-    // Update is called once per frame
+    
     private void Update()
     {
         if (_rec.offsetMax.y <= _checkPoint)

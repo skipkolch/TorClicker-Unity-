@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Linq;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
@@ -27,6 +29,7 @@ public class GameManager : MonoBehaviour
     private float _minimumTime = 10f;
     private bool gameStarted;
     private bool _win;
+    private bool _isStartPulsar;
     private Vector3 _beginCameraPosition;
     private GameObject _currentSphere;
     
@@ -39,6 +42,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         gameStarted = false;
+        _isStartPulsar = false;
         _beginCameraPosition = main.transform.localPosition;
                     
         _currentTimer = _timer.GetComponent<Timer>();
@@ -88,16 +92,20 @@ public class GameManager : MonoBehaviour
 
     private void StartPulsarTimer()
     {
-       _textTimer.color = Color.Lerp(Color.white, Color.red, Mathf.PingPong (Time.time, 0.5f));       
-       _textTimer.fontSize = Convert.ToInt32(Mathf.Lerp(_timerTextSize, 1.5f*_timerTextSize, Mathf.PingPong(Time.time, 0.5f)));
+       _textTimer.DOColor(Color.red, 0.5f).SetLoops(-1, LoopType.Yoyo);
+       _textTimer.gameObject.GetComponent<RectTransform>().DOScale(new Vector3(1.5f, 1.5f), 0.5f).SetLoops(-1, LoopType.Yoyo);
+       //_textTimer.fontSize = Convert.ToInt32(Mathf.Lerp(_timerTextSize, 1.5f*_timerTextSize, Mathf.PingPong(Time.time, 0.5f)));
     }
 
     private void TimerUpdate()
     {
         _textTimer.text = _currentTimer.ToString();
-    
-        if (_currentTimer.GetTime <= 10f && _currentTimer.IsStarted)
+
+        if (_currentTimer.GetTime <= 10f && _currentTimer.IsStarted && !_isStartPulsar)
+        {
             StartPulsarTimer();
+            _isStartPulsar = true;
+        }
 
         if (_currentTimer.GetTime <= 0f)
         {
